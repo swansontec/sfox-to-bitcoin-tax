@@ -3,7 +3,13 @@ import stringify from "csv-stringify/lib/sync";
 import { readFileSync, writeFileSync } from "fs";
 import assert from "assert";
 
-const textIn = readFileSync("./sfox-transactions.csv", "utf8");
+if (process.argv.length !== 3) {
+  console.log(`Usage: ${process.argv[1]} <input file>`)
+  process.exit(1)
+}
+const inputPath = process.argv[2]
+
+const textIn = readFileSync(inputPath, "utf8");
 const rowsIn = parse(textIn, {
   columns: true,
   skip_empty_lines: true
@@ -87,4 +93,5 @@ for (let i = 0; i < tradesIn.length; i += 2) {
 
 const outText = stringify(rowsOut);
 console.log(outText);
-writeFileSync("./sfox-fixed.csv", outText, "utf8");
+console.log(`(saved to output.csv)`);
+writeFileSync("./output.csv", outText, "utf8");
