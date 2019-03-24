@@ -1,0 +1,12 @@
+{
+  "name": "sfox-to-bitcoin-tax",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "main": "index.js",
+  "module": "main.js",
+  "dependencies": {
+    "csv": "^5.0.0",
+    "esm": "^3.0.84"
+  }
+}
