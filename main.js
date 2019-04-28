@@ -44,7 +44,6 @@ for (let i = 0; i < tradesIn.length; i += 2) {
   const source = "SFOX";
   const fee = tradesIn[i].Fees;
   const price = tradesIn[i].Price;
-  const feeCurrency = "USD";
 
   // Figure out which row is which:
   const from = tradesIn[i].Quantity < 0 ? i : i + 1;
@@ -58,6 +57,7 @@ for (let i = 0; i < tradesIn.length; i += 2) {
     const symbol = fromCoin
     const volume = -tradesIn[from]["Quantity"];
     const currency = toCoin
+    const feeCurrency = "USD";
 
     rowsOut.push([
       date,
@@ -75,6 +75,7 @@ for (let i = 0; i < tradesIn.length; i += 2) {
     const symbol = toCoin
     const volume = tradesIn[to]["Quantity"];
     const currency = fromCoin
+    const feeCurrency = fromCoin;
   
     rowsOut.push([
       date,
