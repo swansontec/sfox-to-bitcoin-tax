@@ -4,10 +4,10 @@ import { readFileSync, writeFileSync } from "fs";
 import assert from "assert";
 
 if (process.argv.length !== 3) {
-  console.log(`Usage: ${process.argv[1]} <input file>`)
-  process.exit(1)
+  console.log(`Usage: ${process.argv[1]} <input file>`);
+  process.exit(1);
 }
-const inputPath = process.argv[2]
+const inputPath = process.argv[2];
 
 const textIn = readFileSync(inputPath, "utf8");
 const rowsIn = parse(textIn, {
@@ -54,9 +54,9 @@ for (let i = 0; i < tradesIn.length; i += 2) {
 
   if (toCoin === "USD") {
     const action = "SELL";
-    const symbol = fromCoin
+    const symbol = fromCoin;
     const volume = -tradesIn[from]["Quantity"];
-    const currency = toCoin
+    const currency = toCoin;
     const feeCurrency = "USD";
 
     rowsOut.push([
@@ -72,11 +72,11 @@ for (let i = 0; i < tradesIn.length; i += 2) {
     ]);
   } else {
     const action = "BUY";
-    const symbol = toCoin
+    const symbol = toCoin;
     const volume = tradesIn[to]["Quantity"];
-    const currency = fromCoin
+    const currency = fromCoin;
     const feeCurrency = fromCoin;
-  
+
     rowsOut.push([
       date,
       source,
@@ -89,7 +89,6 @@ for (let i = 0; i < tradesIn.length; i += 2) {
       feeCurrency
     ]);
   }
-
 }
 
 const outText = stringify(rowsOut);
