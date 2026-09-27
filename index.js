@@ -21,6 +21,7 @@ function main() {
   });
 
   handleTrades(rowsIn);
+  handleTransfers(rowsIn);
 }
 
 function handleTrades(rowsIn) {
@@ -103,6 +104,50 @@ function handleTrades(rowsIn) {
 
   const outText = stringify(rowsOut);
   console.log(outText);
-  console.log(`(saved to output.csv)`);
-  writeFileSync("./output.csv", outText, "utf8");
+  console.log("(saved to trades.csv)\n");
+  writeFileSync("./trades.csv", outText, "utf8");
+}
+
+/**
+ * Handles deposits & withdraws.
+ */
+function handleTransfers(rowsIn) {
+  const rowsOut = [
+    [
+      "Date",
+      "Action",
+      "Memo",
+      "Source",
+      "Symbol",
+      "Volume",
+      "Total",
+      "Currency"
+    ]
+  ];
+  for (const row of rowsIn) {
+    let action = row.Action;
+    if (action == "Deposit") {
+      action = "DEPOSIT";
+    } else if (action === "Withdraw") {
+      action = "WITHDRAWAL";
+    } else {
+      continue;
+    }
+
+    const symbol = row["Source Currency"].toUpperCase();
+    if (symbol == "USD") continue;
+
+    const date = row.Date.replace("T", " ").replace(".000Z", " Z");
+    const memo = "SFox";
+    const source = "SFOX";
+    const volume = row.Quantity.replace(/^-/, "");
+
+    // Output
+    rowsOut.push([date, action, memo, source, symbol, volume, "", ""]);
+  }
+
+  const outText = stringify(rowsOut);
+  console.log(outText);
+  console.log(`(saved to transfers.csv)`);
+  writeFileSync("./transfers.csv", outText, "utf8");
 }

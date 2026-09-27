@@ -5,6 +5,9 @@
   "license": "MIT",
   "type": "module",
   "bin": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "csv": "^5.0.0"
   }
