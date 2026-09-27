@@ -1,7 +1,7 @@
-import parse from "csv-parse/lib/sync";
-import stringify from "csv-stringify/lib/sync";
-import { readFileSync, writeFileSync } from "fs";
-import assert from "assert";
+import parse from "csv-parse/lib/sync.js";
+import stringify from "csv-stringify/lib/sync.js";
+import { readFileSync, writeFileSync } from "node:fs";
+import assert from "node:assert";
 
 if (process.argv.length !== 3) {
   console.log(`Usage: ${process.argv[1]} <input file>`);

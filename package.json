@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
+  "type": "module",
   "bin": "index.js",
   "dependencies": {
-    "csv": "^5.0.0",
-    "esm": "^3.0.84"
+    "csv": "^5.0.0"
   }
 }
